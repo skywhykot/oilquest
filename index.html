@@ -1,14 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <title>OilQuest</title>
-<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0...">
+<link rel="icon" type="image/png" sizes="32x32"
+href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABf0lEQVR4nO2Vv0oDQRSG3yig6hLfgDEysVTMnK2wthZB/AFssLm9lchS6eIQqXxC3CwCBaOtHXgRlpKqXKu+ElqnlR9n7uwkTE2+0/efee2dmdD3geHeZpL0Bl3gfPgTdAF3D7gFGY7hZyDZkLULfACh4DP0qIH8mmsCD3gAnwErgd8wDsgfEgN8wFhblpRQvA+cYp2QFf5pwCRzoRFUqOQvQWPR5AhWY2Q6dAV+5VtiRQf4D5pN34E70iVJ6hkYqOeN4h8BsVQgYl8Xk+ihgTTCxRCSsiGsyR0yJ8jKpAqvVZ8nVReR5VRM5vqIoXNgF6U6Gbc6HMEUj7FSQds6v0sV9xhIPoP3DdILaAU2uwsnEnaYXy3M9Y9j2kPQnMiNrxC7PUEzwCLTMEOboSbD7lGfbWY5jD7kBl3yA+S9dDJhBA9AvLZUEVXIZz/gAAAABJRU5ErkJggg==">
 <style>
 body { background: #1a1a1a; font-family: 'Segoe UI', sans-serif; color: #ffd700; padding: 30px;}
 .container { max-width: 950px; background: #111; border-radius: 12px; padding: 30px; margin: auto; border: 2px solid #ffd700; box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);}
 h1.site-title { font-weight:bold; color:#ffd700; margin-bottom:20px; display:flex; align-items:center; justify-content:center;}
+h1.site-title img { width:40px; margin-right:10px;}
 .tab-buttons { display:flex; justify-content:center; margin-bottom:20px;}
 .tab-buttons button { flex:1; padding:12px; background:#222; border:1px solid #ffd700; color:#ffd700; cursor:pointer; font-weight:bold; transition: background 0.3s;}
 .tab-buttons button.active { background:#ffd700; color:#111;}
@@ -17,20 +18,18 @@ h1.site-title { font-weight:bold; color:#ffd700; margin-bottom:20px; display:fle
 .correct { color: #00ff00; font-weight:bold;}
 .incorrect { color:#ff3300; font-weight:bold;}
 .explain { font-size:14px; color:#ccc; margin-bottom:10px;}
-input, textarea { background:#222; color:#ffd700; border:1px solid #ffd700; width:100%; padding:5px; border-radius:5px; margin-bottom:5px;}
-button { background:#ffd700; color:#111; border:none; padding:10px 15px; cursor:pointer; margin-top:5px;}
-button:hover { background:#fff; color:#111;}
-iframe { width: 100%; height: 500px; border: none; border-radius: 10px;}
+input { background:#222; color:#ffd700; border:1px solid #ffd700; width:100%; padding:5px; border-radius:5px; margin-bottom:5px;}
+button, a { background:#ffd700; color:#111; border:none; padding:10px 15px; cursor:pointer; margin-top:5px; text-decoration:none; display:inline-block;}
+button:hover, a:hover { background:#fff; color:#111;}
 </style>
 </head>
 <body>
 <div class="container">
-<h1 class="site-title">OilQuest</h1>
+<h1 class="site-title"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABf0lEQVR4nO2Vv0oDQRSG3yig6hLfgDEysVTMnK2wthZB/AFssLm9lchS6eIQqXxC3CwCBaOtHXgRlpKqXKu+ElqnlR9n7uwkTE2+0/efee2dmdD3geHeZpL0Bl3gfPgTdAF3D7gFGY7hZyDZkLULfACh4DP0qIH8mmsCD3gAnwErgd8wDsgfEgN8wFhblpRQvA+cYp2QFf5pwCRzoRFUqOQvQWPR5AhWY2Q6dAV+5VtiRQf4D5pN34E70iVJ6hkYqOeN4h8BsVQgYl8Xk+ihgTTCxRCSsiGsyR0yJ8jKpAqvVZ8nVReR5VRM5vqIoXNgF6U6Gbc6HMEUj7FSQds6v0sV9xhIPoP3DdILaAU2uwsnEnaYXy3M9Y9j2kPQnMiNrxC7PUEzwCLTMEOboSbD7lGfbWY5jD7kBl3yA+S9dDJhBA9AvLZUEVXIZz/gAAAABJRU5ErkJggg==">OilQuest</h1>
 
 <div class="tab-buttons">
   <button class="tab-btn active" onclick="openTab('quiz-section', this)">🛢️ Тест</button>
   <button class="tab-btn" onclick="openTab('rig-section', this)">🛠️ Нефтевышка</button>
-  <button class="tab-btn" onclick="openTab('map-section', this)">🗺️ Карта месторождений</button>
 </div>
 
 <!-- Тест -->
@@ -58,29 +57,27 @@ iframe { width: 100%; height: 500px; border: none; border-radius: 10px;}
 <div><b>4. Где чаще всего добывают нефть?</b><br>
 <input type="radio" name="q4" value="a"> В океане и пустынях<br>
 <input type="radio" name="q4" value="b"> В горах<br>
+
 <input type="radio" name="q4" value="c"> Только на суше<br>
 <div id="exp4" class="explain"></div></div>
 
 <button onclick="checkQuiz()">Проверить ответы</button>
-<div id="quiz-result"></div>
+
+<!-- Гиперссылка на карту -->
+<a href="map.html" target="_blank">🗺️ Открыть карту месторождений</a>
+
 </div>
 </div>
 
-<!-- 3D нефтевышка -->
+<!-- Нефтевышка -->
 <div id="rig-section" class="tab-content">
 <h2>🛠️ 3D Модель нефтяной вышки</h2>
 <div id="oilRig3D" style="width:100%; height:500px;"></div>
 </div>
 
-<!-- Карта месторождений -->
-<div id="map-section" class="tab-content">
-<h2>🗺️ Карта месторождений</h2>
-<iframe src="https://yandex.ru/maps/?um=constructor%3Aexample&source=constructor" allowfullscreen></iframe>
 </div>
 
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/three@0.148.0/build/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.148.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.148.0/examples/js/loaders/GLTFLoader.js"></script>
 
@@ -88,8 +85,7 @@ iframe { width: 100%; height: 500px; border: none; border-radius: 10px;}
 // вкладки
 function openTab(tabId, btn){
   const contents = document.querySelectorAll('.tab-content');
-
-const buttons = document.querySelectorAll('.tab-btn');
+  const buttons = document.querySelectorAll('.tab-btn');
   contents.forEach(c=>{
     if(c.id === tabId){
       c.style.display = "block"; 
@@ -103,7 +99,7 @@ const buttons = document.querySelectorAll('.tab-btn');
   btn.classList.add('active');
 }
 
-// тест
+// Тест
 function checkQuiz(){
     const answers = {q1:"b",q2:"c",q3:"a",q4:"a"};
     const explanations = {
@@ -149,7 +145,11 @@ loader.load("https://github.com/skywhykot/oilquest/releases/tag/v1.0",
     function(error){ console.error(error); }
 );
 
-function animate3D(){ requestAnimationFrame(animate3D); controls.update(); renderer.render(scene,camera);}
+function animate3D(){ 
+    requestAnimationFrame(animate3D);
+    controls.update();
+    renderer.render(scene,camera);
+}
 animate3D();
 
 window.addEventListener('resize',()=>{
@@ -160,5 +160,3 @@ window.addEventListener('resize',()=>{
 </script>
 </body>
 </html>
-
-
