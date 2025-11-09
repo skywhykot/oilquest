@@ -1,41 +1,70 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Месторождения нефти</title>
-<style>
-  html, body { width:100%; height:100%; margin:0; padding:0; }
-  #oilMap { width:100%; height:100%; }
-</style>
+  <meta charset="UTF-8">
+  <title>Месторождения нефти</title>
+  <style>
+    html, body { width:100%; height:100%; margin:0; padding:0; }
+    #oilMap { width:100%; height:100%; }
+    .back-link {
+      position:absolute;
+      top:10px; left:10px;
+      z-index:1000;
+      background:#ffd700; color:#111;
+      padding:8px 12px; border-radius:5px;
+      text-decoration:none;
+    }
+  </style>
 </head>
 <body>
-<div id="oilMap"></div>
 
-<script src="https://api-maps.yandex.ru/2.1/?apikey=644fbb33-ed95-4b92-aace-626a57c3977e&lang=ru_RU" type="text/javascript"></script>
-<script>
-  ymaps.ready(init);
-  function init() {
+  <a class="back-link" href="index.html" target="_self">⬅️ Вернуться на сайт</a>
+
+  <div id="oilMap"></div>
+
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=644fbb33-ed95-4b92-aace-626a57c3977e&lang=ru_RU" type="text/javascript"></script>
+  <script>
+    ymaps.ready(init);
+    function init() {
       var map = new ymaps.Map("oilMap", {
-          center: [20, 0],
-          zoom: 2,
-          controls: ['zoomControl','typeSelector','fullscreenControl']
+        center: [20, 0],
+        zoom: 2,
+        controls: ['zoomControl','typeSelector','fullscreenControl']
       });
 
       var clusterer = new ymaps.Clusterer({preset:'islands#invertedVioletClusterIcons'});
 
       var fields = [
-          {coords:[29.95,-89.85], name:"Мексиканский залив"},
-          {coords:[19.07,72.87], name:"Мумбай (Индия)"},
-          {coords:[25.0,45.0], name:"Саудовская Аравия"},
-          {coords:[60.0,75.0], name:"Западная Сибирь (Россия)"},
-          {coords:[0.0,-50.0], name:"Шельф Бразилии"},
-          {coords:[61.2,-149.9], name:"Аляска (США)"}
+        {coords:[25.0,49.0], name:"Нефтяное месторождение Гавар (Саудовская Аравия)"},
+        {coords:[29.0,48.0], name:"Нефтяное месторождение Бурган (Кувейт)"},
+        {coords:[30.0,47.8], name:"Нефтяное месторождение Румаила (Ирак)"},
+        {coords:[60.0,75.0], name:"Западно‑Сибирский нефтегазовый бассейн (Россия)"},
+        {coords:[6.5,107.0], name:"Бассейн Нам Кон Сон (Вьетнам)"},
+        {coords:[46.0,125.0], name:"Нефтяное месторождение Дачин (Китай)"},
+        {coords:[27.0,49.0], name:"Нефтяное месторождение Сафания (Саудовская Аравия)"},
+        {coords:[48.7,53.0], name:"Нефтяное месторождение Тенгиз (Казахстан)"},
+        {coords:[20.0,-89.0], name:"Нефтяное месторождение Кантарелль (Мексика)"},
+        {coords:[24.3,52.8], name:"Нефтяное месторождение Аппер Закум (ОАЭ)"},
+        {coords:[31.0,35.0], name:"Бассейн Мёрфи (Израиль/Иордания)"},
+        {coords:[4.0,102.0], name:"Бассейн Малайзия (Малайзия)"},
+        {coords:[15.0,49.0], name:"Бассейн Руб-эль-Хали (Саудовская Аравия)"},
+        {coords:[-1.0,38.5], name:"Бассейн Лак Тчад (Африка)"},
+        {coords:[7.5,125.5], name:"Бассейн Минданао (Филиппины)"},
+        {coords:[27.5,93.0], name:"Бассейн Аруджуп (Индия)"},
+        {coords:[-20.0,31.0], name:"Бассейн Замбезия (Мозамбик)"},
+        {coords:[38.0,-9.0], name:"Бассейн Лисабон (Португалия)"},
+        {coords:[42.0,45.0], name:"Бассейн Каспийский‑Оншор (Азербайджан)"},
+        {coords:[-30.0,137.0], name:"Бассейн Купер (Австралия)"}
       ];
 
-      var geoObjects = fields.map(f => new ymaps.Placemark(f.coords,{balloonContent:f.name},{preset:'islands#yellowIcon'}));
+      var geoObjects = fields.map(function(f) {
+        return new ymaps.Placemark(f.coords, { balloonContent: f.name }, { preset: 'islands#yellowIcon' });
+      });
+
       clusterer.add(geoObjects);
       map.geoObjects.add(clusterer);
-  }
-</script>
+    }
+  </script>
+
 </body>
 </html>
