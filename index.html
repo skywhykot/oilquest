@@ -6,30 +6,37 @@
 <link rel="icon" type="image/png" sizes="32x32"
 href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABf0lEQVR4nO2Vv0oDQRSG3yig6hLfgDEysVTMnK2wthZB/AFssLm9lchS6eIQqXxC3CwCBaOtHXgRlpKqXKu+ElqnlR9n7uwkTE2+0/efee2dmdD3geHeZpL0Bl3gfPgTdAF3D7gFGY7hZyDZkLULfACh4DP0qIH8mmsCD3gAnwErgd8wDsgfEgN8wFhblpRQvA+cYp2QFf5pwCRzoRFUqOQvQWPR5AhWY2Q6dAV+5VtiRQf4D5pN34E70iVJ6hkYqOeN4h8BsVQgYl8Xk+ihgTTCxRCSsiGsyR0yJ8jKpAqvVZ8nVReR5VRM5vqIoXNgF6U6Gbc6HMEUj7FSQds6v0sV9xhIPoP3DdILaAU2uwsnEnaYXy3M9Y9j2kPQnMiNrxC7PUEzwCLTMEOboSbD7lGfbWY5jD7kBl3yA+S9dDJhBA9AvLZUEVXIZz/gAAAABJRU5ErkJggg==">
 <style>
-body { background: #1a1a1a; font-family: 'Segoe UI', sans-serif; color: #ffd700; padding: 30px;}
-.container { max-width: 950px; background: #111; border-radius: 12px; padding: 30px; margin: auto; border: 2px solid #ffd700; box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);}
+body, html { margin:0; padding:0; width:100%; height:100%; font-family:'Segoe UI', sans-serif; background:#111; color:#ffd700; overflow-x:hidden;}
+.container { max-width:950px; margin:auto; background:#111; border-radius:12px; padding:30px; border:2px solid #ffd700; box-shadow:0 8px 20px rgba(255,215,0,0.3); position:relative; z-index:1;}
 h1.site-title { font-weight:bold; color:#ffd700; margin-bottom:20px; display:flex; align-items:center; justify-content:center;}
 h1.site-title img { width:40px; margin-right:10px;}
 .tab-buttons { display:flex; justify-content:center; margin-bottom:20px;}
-.tab-buttons button { flex:1; padding:12px; background:#222; border:1px solid #ffd700; color:#ffd700; cursor:pointer; font-weight:bold; transition: background 0.3s;}
+.tab-buttons button { flex:1; padding:12px; background:#222; border:1px solid #ffd700; color:#ffd700; cursor:pointer; font-weight:bold; transition: all 0.3s;}
+.tab-buttons button:hover { background:#ffd700; color:#111;}
 .tab-buttons button.active { background:#ffd700; color:#111;}
-.tab-content { display:none; opacity:0; transition: opacity 0.6s ease;}
+.tab-content { display:none; opacity:0; transition:opacity 0.6s ease;}
 .tab-content.active { display:block; opacity:1;}
-.correct { color: #00ff00; font-weight:bold;}
+.correct { color:#00ff00; font-weight:bold;}
 .incorrect { color:#ff3300; font-weight:bold;}
 .explain { font-size:14px; color:#ccc; margin-bottom:10px;}
 input { background:#222; color:#ffd700; border:1px solid #ffd700; width:100%; padding:5px; border-radius:5px; margin-bottom:5px;}
-button, a { background:#ffd700; color:#111; border:none; padding:10px 15px; cursor:pointer; margin-top:5px; text-decoration:none; display:inline-block;}
+button, a { background:#ffd700; color:#111; border:none; padding:10px 15px; cursor:pointer; margin-top:5px; text-decoration:none; display:inline-block; transition:all 0.3s;}
 button:hover, a:hover { background:#fff; color:#111;}
+
+/* Анимация фона частиц */
+#particles { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;}
+.fact-box { background:rgba(255,215,0,0.1); padding:15px; margin-bottom:10px; border-radius:8px; }
 </style>
 </head>
 <body>
+<canvas id="particles"></canvas>
 <div class="container">
 <h1 class="site-title"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABf0lEQVR4nO2Vv0oDQRSG3yig6hLfgDEysVTMnK2wthZB/AFssLm9lchS6eIQqXxC3CwCBaOtHXgRlpKqXKu+ElqnlR9n7uwkTE2+0/efee2dmdD3geHeZpL0Bl3gfPgTdAF3D7gFGY7hZyDZkLULfACh4DP0qIH8mmsCD3gAnwErgd8wDsgfEgN8wFhblpRQvA+cYp2QFf5pwCRzoRFUqOQvQWPR5AhWY2Q6dAV+5VtiRQf4D5pN34E70iVJ6hkYqOeN4h8BsVQgYl8Xk+ihgTTCxRCSsiGsyR0yJ8jKpAqvVZ8nVReR5VRM5vqIoXNgF6U6Gbc6HMEUj7FSQds6v0sV9xhIPoP3DdILaAU2uwsnEnaYXy3M9Y9j2kPQnMiNrxC7PUEzwCLTMEOboSbD7lGfbWY5jD7kBl3yA+S9dDJhBA9AvLZUEVXIZz/gAAAABJRU5ErkJggg==">OilQuest</h1>
 
 <div class="tab-buttons">
   <button class="tab-btn active" onclick="openTab('quiz-section', this)">🛢 Тест</button>
   <button class="tab-btn" onclick="openTab('links-section', this)">🔗 Ссылки</button>
+  <button class="tab-btn" onclick="openTab('facts-section', this)">💡 Факты о нефти</button>
 </div>
 
 <!-- Тест -->
@@ -48,7 +55,9 @@ button:hover, a:hover { background:#fff; color:#111;}
 <input type="radio" name="q2" value="c"> Алюминий<br>
 <div id="exp2" class="explain"></div></div>
 
-<div><b>3. Как называется процесс увеличения выхода бензина?</b><br>
+<div><b>3.
+
+Как называется процесс увеличения выхода бензина?</b><br>
 <input type="radio" name="q3" value="a"> Крекинг<br>
 <input type="radio" name="q3" value="b"> Полимеризация<br>
 <input type="radio" name="q3" value="c"> Гидратация<br>
@@ -58,7 +67,6 @@ button:hover, a:hover { background:#fff; color:#111;}
 <input type="radio" name="q4" value="a"> В океане и пустынях<br>
 <input type="radio" name="q4" value="b"> В горах<br>
 <input type="radio" name="q4" value="c"> Только на суше<br>
-
 <div id="exp4" class="explain"></div></div>
 
 <button onclick="checkQuiz()">Проверить ответы</button>
@@ -66,11 +74,21 @@ button:hover, a:hover { background:#fff; color:#111;}
 </div>
 </div>
 
-<!-- Ссылки на карту и 3D-модель -->
+<!-- Ссылки -->
 <div id="links-section" class="tab-content">
 <h2>🔗 Интерактивные ресурсы</h2>
 <a href="map.html" target="_blank">🗺 Открыть карту месторождений</a><br>
 <a href="rig.html" target="_blank">🛠 Открыть 3D нефтевышку</a>
+</div>
+
+<!-- Факты -->
+<div id="facts-section" class="tab-content">
+<h2>💡 Факты о нефти</h2>
+<div class="fact-box">1. Нефть — это смесь углеводородов, образованная миллионы лет назад.</div>
+<div class="fact-box">2. Крупнейшие нефтяные бассейны находятся в Саудовской Аравии, России и США.</div>
+<div class="fact-box">3. Процесс первичной переработки нефти — разделение на фракции по температуре кипения.</div>
+<div class="fact-box">4. Крекинг позволяет увеличить выход бензина из нефти.</div>
+<div class="fact-box">5. Анимированные интерактивные карты помогают изучать мировую добычу нефти.</div>
 </div>
 
 </div>
@@ -112,6 +130,33 @@ function checkQuiz(){
     resDiv.innerHTML = "Ваш результат: " + score + " из 4";
     resDiv.className = (score===4) ? "correct" : "incorrect";
 }
+
+// частицы на фоне
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let w, h;
+function resize(){ w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize); resize();
+
+let particles = [];
+for(let i=0;i<150;i++){
+  particles.push({x:Math.random()*w, y:Math.random()*h, r:Math.random()*2+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5});
+}
+
+function animateParticles(){
+  ctx.clearRect(0,0,w,h);
+  for(let p of particles){
+    p.x += p.dx; p.y += p.dy;
+    if(p.x<0||p.x>w)p.dx*=-1;
+    if(p.y<0||p.y>h)p.dy*=-1;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,215,0,0.5)';
+    ctx.fill();
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
 </script>
 </body>
 </html>
