@@ -28,13 +28,13 @@ button:hover, a:hover { background:#fff; color:#111;}
 <h1 class="site-title"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABf0lEQVR4nO2Vv0oDQRSG3yig6hLfgDEysVTMnK2wthZB/AFssLm9lchS6eIQqXxC3CwCBaOtHXgRlpKqXKu+ElqnlR9n7uwkTE2+0/efee2dmdD3geHeZpL0Bl3gfPgTdAF3D7gFGY7hZyDZkLULfACh4DP0qIH8mmsCD3gAnwErgd8wDsgfEgN8wFhblpRQvA+cYp2QFf5pwCRzoRFUqOQvQWPR5AhWY2Q6dAV+5VtiRQf4D5pN34E70iVJ6hkYqOeN4h8BsVQgYl8Xk+ihgTTCxRCSsiGsyR0yJ8jKpAqvVZ8nVReR5VRM5vqIoXNgF6U6Gbc6HMEUj7FSQds6v0sV9xhIPoP3DdILaAU2uwsnEnaYXy3M9Y9j2kPQnMiNrxC7PUEzwCLTMEOboSbD7lGfbWY5jD7kBl3yA+S9dDJhBA9AvLZUEVXIZz/gAAAABJRU5ErkJggg==">OilQuest</h1>
 
 <div class="tab-buttons">
-  <button class="tab-btn active" onclick="openTab('quiz-section', this)">🛢️ Тест</button>
-  <button class="tab-btn" onclick="openTab('rig-section', this)">🛠️ Нефтевышка</button>
+  <button class="tab-btn active" onclick="openTab('quiz-section', this)">🛢 Тест</button>
+  <button class="tab-btn" onclick="openTab('links-section', this)">🔗 Ссылки</button>
 </div>
 
 <!-- Тест -->
 <div id="quiz-section" class="tab-content active">
-<h2>🛢️ Тест по нефтепереработке</h2>
+<h2>🛢 Тест по нефтепереработке</h2>
 <div id="quiz">
 <div><b>1. Что такое первичная переработка нефти?</b><br>
 <input type="radio" name="q1" value="a"> Разложение нефти бактериями<br>
@@ -57,29 +57,23 @@ button:hover, a:hover { background:#fff; color:#111;}
 <div><b>4. Где чаще всего добывают нефть?</b><br>
 <input type="radio" name="q4" value="a"> В океане и пустынях<br>
 <input type="radio" name="q4" value="b"> В горах<br>
-
 <input type="radio" name="q4" value="c"> Только на суше<br>
+
 <div id="exp4" class="explain"></div></div>
 
 <button onclick="checkQuiz()">Проверить ответы</button>
-
-<!-- Гиперссылка на карту -->
-<a href="map.html" target="_blank">🗺️ Открыть карту месторождений</a>
-
+<div id="quiz-result"></div>
 </div>
 </div>
 
-<!-- Нефтевышка -->
-<div id="rig-section" class="tab-content">
-<h2>🛠️ 3D Модель нефтяной вышки</h2>
-<div id="oilRig3D" style="width:100%; height:500px;"></div>
+<!-- Ссылки на карту и 3D-модель -->
+<div id="links-section" class="tab-content">
+<h2>🔗 Интерактивные ресурсы</h2>
+<a href="map.html" target="_blank">🗺 Открыть карту месторождений</a><br>
+<a href="rig.html" target="_blank">🛠 Открыть 3D нефтевышку</a>
 </div>
 
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.148.0/examples/js/controls/OrbitControls.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.148.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
 // вкладки
@@ -99,7 +93,7 @@ function openTab(tabId, btn){
   btn.classList.add('active');
 }
 
-// Тест
+// тест
 function checkQuiz(){
     const answers = {q1:"b",q2:"c",q3:"a",q4:"a"};
     const explanations = {
@@ -118,45 +112,6 @@ function checkQuiz(){
     resDiv.innerHTML = "Ваш результат: " + score + " из 4";
     resDiv.className = (score===4) ? "correct" : "incorrect";
 }
-
-// 3D нефтевышка
-const container=document.getElementById("oilRig3D");
-const scene=new THREE.Scene();
-scene.background=new THREE.Color(0x111111);
-const camera=new THREE.PerspectiveCamera(75,container.clientWidth/container.clientHeight,0.1,1000);
-camera.position.set(10,10,15);
-const renderer=new THREE.WebGLRenderer({antialias:true});
-renderer.setSize(container.clientWidth,container.clientHeight);
-container.appendChild(renderer.domElement);
-const controls=new THREE.OrbitControls(camera,renderer.domElement);
-controls.enableDamping=true;
-scene.add(new THREE.AmbientLight(0xffffff,0.6));
-const dirLight=new THREE.DirectionalLight(0xffffff,0.8); dirLight.position.set(10,15,10); scene.add(dirLight);
-
-const loader=new THREE.GLTFLoader();
-loader.load("https://github.com/skywhykot/oilquest/releases/download/v1.0/oil_rig.glb",
-    function(gltf){
-        const model=gltf.scene;
-        model.scale.set(0.5,0.5,0.5);
-        model.position.set(0,0,0);
-        scene.add(model);
-    },
-    undefined,
-    function(error){ console.error(error); }
-);
-
-function animate3D(){ 
-    requestAnimationFrame(animate3D);
-    controls.update();
-    renderer.render(scene,camera);
-}
-animate3D();
-
-window.addEventListener('resize',()=>{
-    camera.aspect=container.clientWidth/container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth,container.clientHeight);
-});
 </script>
 </body>
 </html>
