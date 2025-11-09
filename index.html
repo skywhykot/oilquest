@@ -3,44 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <title>OilQuest</title>
-<link rel="icon" type="image/png" sizes="32x32"
-href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABf0lEQVR4nO2Vv0oDQRSG3yig6hLfgDEysVTMnK2wthZB/AFssLm9lchS6eIQqXxC3CwCBaOtHXgRlpKqXKu+ElqnlR9n7uwkTE2+0/efee2dmdD3geHeZpL0Bl3gfPgTdAF3D7gFGY7hZyDZkLULfACh4DP0qIH8mmsCD3gAnwErgd8wDsgfEgN8wFhblpRQvA+cYp2QFf5pwCRzoRFUqOQvQWPR5AhWY2Q6dAV+5VtiRQf4D5pN34E70iVJ6hkYqOeN4h8BsVQgYl8Xk+ihgTTCxRCSsiGsyR0yJ8jKpAqvVZ8nVReR5VRM5vqIoXNgF6U6Gbc6HMEUj7FSQds6v0sV9xhIPoP3DdILaAU2uwsnEnaYXy3M9Y9j2kPQnMiNrxC7PUEzwCLTMEOboSbD7lGfbWY5jD7kBl3yA+S9dDJhBA9AvLZUEVXIZz/gAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" sizes="32x32" href="logo.png">
 <style>
-body, html { margin:0; padding:0; width:100%; height:100%; font-family:'Segoe UI', sans-serif; background:#111; color:#ffd700; overflow-x:hidden;}
-.container { max-width:950px; margin:auto; background:#111; border-radius:12px; padding:30px; border:2px solid #ffd700; box-shadow:0 8px 20px rgba(255,215,0,0.3); position:relative; z-index:1;}
+body { background:#1a1a1a; font-family:'Segoe UI',sans-serif; color:#ffd700; padding:30px;}
+.container { max-width:950px; background:#111; border-radius:12px; padding:30px; margin:auto; border:2px solid #ffd700; box-shadow:0 8px 20px rgba(255,215,0,0.3);}
 h1.site-title { font-weight:bold; color:#ffd700; margin-bottom:20px; display:flex; align-items:center; justify-content:center;}
-h1.site-title img { width:40px; margin-right:10px;}
+h1.site-title img { width:40px; margin-right:10px; }
 .tab-buttons { display:flex; justify-content:center; margin-bottom:20px;}
-.tab-buttons button { flex:1; padding:12px; background:#222; border:1px solid #ffd700; color:#ffd700; cursor:pointer; font-weight:bold; transition: all 0.3s;}
-.tab-buttons button:hover { background:#ffd700; color:#111;}
+.tab-buttons button { flex:1; padding:12px; background:#222; border:1px solid #ffd700; color:#ffd700; cursor:pointer; font-weight:bold; transition: background 0.3s;}
 .tab-buttons button.active { background:#ffd700; color:#111;}
-.tab-content { display:none; opacity:0; transition:opacity 0.6s ease;}
+.tab-content { display:none; opacity:0; transition: opacity 0.6s ease;}
 .tab-content.active { display:block; opacity:1;}
 .correct { color:#00ff00; font-weight:bold;}
 .incorrect { color:#ff3300; font-weight:bold;}
 .explain { font-size:14px; color:#ccc; margin-bottom:10px;}
 input { background:#222; color:#ffd700; border:1px solid #ffd700; width:100%; padding:5px; border-radius:5px; margin-bottom:5px;}
-button, a { background:#ffd700; color:#111; border:none; padding:10px 15px; cursor:pointer; margin-top:5px; text-decoration:none; display:inline-block; transition:all 0.3s;}
+button, a { background:#ffd700; color:#111; border:none; padding:10px 15px; cursor:pointer; margin-top:5px; text-decoration:none; display:inline-block;}
 button:hover, a:hover { background:#fff; color:#111;}
-
-/* Анимация фона частиц */
-#particles { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;}
-.fact-box { background:rgba(255,215,0,0.1); padding:15px; margin-bottom:10px; border-radius:8px; }
+section { margin-bottom:20px;}
 </style>
 </head>
 <body>
-<canvas id="particles"></canvas>
 <div class="container">
-<h1 class="site-title"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABf0lEQVR4nO2Vv0oDQRSG3yig6hLfgDEysVTMnK2wthZB/AFssLm9lchS6eIQqXxC3CwCBaOtHXgRlpKqXKu+ElqnlR9n7uwkTE2+0/efee2dmdD3geHeZpL0Bl3gfPgTdAF3D7gFGY7hZyDZkLULfACh4DP0qIH8mmsCD3gAnwErgd8wDsgfEgN8wFhblpRQvA+cYp2QFf5pwCRzoRFUqOQvQWPR5AhWY2Q6dAV+5VtiRQf4D5pN34E70iVJ6hkYqOeN4h8BsVQgYl8Xk+ihgTTCxRCSsiGsyR0yJ8jKpAqvVZ8nVReR5VRM5vqIoXNgF6U6Gbc6HMEUj7FSQds6v0sV9xhIPoP3DdILaAU2uwsnEnaYXy3M9Y9j2kPQnMiNrxC7PUEzwCLTMEOboSbD7lGfbWY5jD7kBl3yA+S9dDJhBA9AvLZUEVXIZz/gAAAABJRU5ErkJggg==">OilQuest</h1>
 
+<!-- НАЗВАНИЕЛОГО: логотип -->
+<h1 class="site-title">
+  <img src="logo.png" alt="Логотип" /> <!-- НАЗВАНИЕЛОГО -->
+  OilQuest
+</h1>
+
+<!-- Кнопки вкладок -->
 <div class="tab-buttons">
-  <button class="tab-btn active" onclick="openTab('quiz-section', this)">🛢 Тест</button>
-  <button class="tab-btn" onclick="openTab('links-section', this)">🔗 Ссылки</button>
-  <button class="tab-btn" onclick="openTab('facts-section', this)">💡 Факты о нефти</button>
+  <button class="tab-btn active" onclick="openTab('home-section', this)">🏠 Главная</button>
+  <button class="tab-btn" onclick="openTab('oil-process-section', this)">💼 Добыча и переработка нефти</button>
+  <button class="tab-btn" onclick="openTab('transport-section', this)">🚛 Транспортировка и хранение</button>
+  <button class="tab-btn" onclick="openTab('quiz-section', this)">🛢 Тест</button>
+  <button class="tab-btn" onclick="openTab('rig-map-section', this)">🛠 Нефтевышка и карта</button>
 </div>
 
-<!-- Тест -->
-<div id="quiz-section" class="tab-content active">
+<!-- Вкладка 1: Главная -->
+<div id="home-section" class="tab-content active">
+<h2>🏭 Добро пожаловать на OilQuest</h2>
+<p>На нашем сайте вы сможете узнать всё о нефтяной отрасли: от добычи и переработки нефти до способов транспортировки и хранения. Здесь вы найдете интересные статьи, интерактивные материалы и наглядные примеры, включая 3D модели и карты месторождений. Вы сможете пройти тесты, проверить свои знания и узнать много нового о нефтяной промышленности. Цель сайта — объединить учебный материал и визуальные инструменты для более глубокого понимания процессов, связанных с нефтью. Мы предоставляем подробные обзоры, полезные факты и ссылки на карты и модели для практического изучения. Добро пожаловать в мир нефтяной промышленности!</p>
+</div>
+
+<!-- Вкладка 2: Добыча и переработка нефти -->
+<div id="oil-process-section" class="tab-content">
+<h2>🛢 Добыча и переработка нефти</h2>
+<section>
+<h3>Введение</h3>
+<p>Нефть — ключевой энергетический ресурс современного мира. Она используется для топлива, химической продукции и различных материалов. Добыча и переработка нефти — сложные технологические процессы, требующие высокой инженерной подготовки. В этой статье подробно рассматриваются этапы добычи, методы переработки и крупнейшие нефтяные бассейны мира.</p>
+</section>
+<section>
+<h3>Геология и разведка</h3>
+<p>Нефть формируется в земной коре миллионы лет из органических остатков растений и микроорганизмов. Основные залежи находятся в пористых породах, таких как песчаники и известняки, покрытые непроницаемыми слоями, предотвращающими утечку. Геологи используют методы сейсморазведки, анализ керна и геохимию, чтобы определить перспективные участки бурения.</p>
+</section>
+<section>
+<h3>Методы добычи нефти</h3>
+<p>Первый этап — бурение скважин. Существуют наземные и морские установки.
+
+После вскрытия пласта нефть поднимается на поверхность за счет давления, насосов или гидравлического воздействия. Вторичная и третичная добыча включают закачку воды, газа или химических реагентов для увеличения извлечения нефти.</p>
+</section>
+<section>
+<h3>Переработка нефти</h3>
+<p>Сырая нефть непригодна для прямого использования. Первичная переработка — фракционная перегонка (бензин, дизель, керосин, мазут). Вторичная — крекинг, риформинг, гидроочистка для высокооктанового топлива и химпродуктов. Современные НПЗ оснащены системами контроля качества и экологической безопасности.</p>
+</section>
+<section>
+<h3>Крупнейшие нефтяные бассейны</h3>
+<p>Основные регионы: Персидский залив, Западная Сибирь, Мексиканский залив, шельф Бразилии, Нигерия, Аляска, Северное море. Каждый бассейн имеет особенности: состав нефти, глубина залегания, технологические вызовы.</p>
+</section>
+<section>
+<h3>Экологические аспекты</h3>
+<p>Добыча и переработка связаны с рисками загрязнения. Используются очистные сооружения, утилизация отходов, контроль выбросов, предотвращение разливов. Современные технологии минимизируют экологический ущерб.</p>
+</section>
+<section>
+<h3>Заключение</h3>
+<p>Добыча и переработка нефти — основа экономики и энергетики. Современные технологии позволяют эффективно извлекать ресурсы и перерабатывать их в широкий спектр продуктов, обеспечивая экологическую безопасность.</p>
+</section>
+</div>
+
+<!-- Вкладка 3: Транспортировка и хранение нефти -->
+<div id="transport-section" class="tab-content">
+<h2>🚛 Транспортировка и хранение нефти</h2>
+<section>
+<h3>Методы транспортировки</h3>
+<p>Нефть транспортируют трубопроводами, морскими танкерами, железнодорожными цистернами и автомобильным транспортом. Трубопроводы обеспечивают постоянную подачу нефти на большие расстояния. Морские перевозки применяются для трансокеанской транспортировки. Железнодорожные и автомобильные перевозки — для региональных поставок.</p>
+</section>
+<section>
+<h3>Хранение нефти</h3>
+<p>Хранение осуществляется в резервуарах, танкерах и подземных хранилищах. Резервуары оснащены системами контроля давления и температуры. Подземные хранилища используют для стратегических запасов. Безопасность обеспечивается системами мониторинга утечек, противопожарными мерами и техническим обслуживанием оборудования.</p>
+</section>
+</div>
+
+<!-- Вкладка 4: Тест -->
+<div id="quiz-section" class="tab-content">
 <h2>🛢 Тест по нефтепереработке</h2>
 <div id="quiz">
 <div><b>1. Что такое первичная переработка нефти?</b><br>
@@ -55,9 +111,7 @@ button:hover, a:hover { background:#fff; color:#111;}
 <input type="radio" name="q2" value="c"> Алюминий<br>
 <div id="exp2" class="explain"></div></div>
 
-<div><b>3.
-
-Как называется процесс увеличения выхода бензина?</b><br>
+<div><b>3. Как называется процесс увеличения выхода бензина?</b><br>
 <input type="radio" name="q3" value="a"> Крекинг<br>
 <input type="radio" name="q3" value="b"> Полимеризация<br>
 <input type="radio" name="q3" value="c"> Гидратация<br>
@@ -74,89 +128,53 @@ button:hover, a:hover { background:#fff; color:#111;}
 </div>
 </div>
 
-<!-- Ссылки -->
-<div id="links-section" class="tab-content">
-<h2>🔗 Интерактивные ресурсы</h2>
-<a href="map.html" target="_blank">🗺 Открыть карту месторождений</a><br>
-<a href="rig.html" target="_blank">🛠 Открыть 3D нефтевышку</a>
-</div>
-
-<!-- Факты -->
-<div id="facts-section" class="tab-content">
-<h2>💡 Факты о нефти</h2>
-<div class="fact-box">1. Нефть — это смесь углеводородов, образованная миллионы лет назад.</div>
-<div class="fact-box">2. Крупнейшие нефтяные бассейны находятся в Саудовской Аравии, России и США.</div>
-<div class="fact-box">3. Процесс первичной переработки нефти — разделение на фракции по температуре кипения.</div>
-<div class="fact-box">4. Крекинг позволяет увеличить выход бензина из нефти.</div>
-<div class="fact-box">5. Анимированные интерактивные карты помогают изучать мировую добычу нефти.</div>
+<!-- Вкладка 5: Нефтевышка и карта -->
+<div id="rig-map-section" class="tab-content">
+<h2>🛠 Нефтевышка и карта</h2>
+<a href="oil_rig.html" target="_blank">3D модель нефтяной вышки</a><br>
+<a href="map.html" target="_blank">Карта месторождений</a>
 </div>
 
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.148.
+
+0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.148.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-// вкладки
+// Вкладки
 function openTab(tabId, btn){
   const contents = document.querySelectorAll('.tab-content');
   const buttons = document.querySelectorAll('.tab-btn');
   contents.forEach(c=>{
-    if(c.id === tabId){
-      c.style.display = "block"; 
-      setTimeout(()=>c.classList.add('active'),10); 
-    } else {
-      c.classList.remove('active'); 
-      setTimeout(()=>c.style.display="none",600);
-    }
+    if(c.id===tabId){ c.style.display="block"; setTimeout(()=>c.classList.add('active'),10);}
+    else{ c.classList.remove('active'); setTimeout(()=>c.style.display="none",600);}
   });
   buttons.forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 }
 
-// тест
+// Тест
 function checkQuiz(){
     const answers = {q1:"b",q2:"c",q3:"a",q4:"a"};
     const explanations = {
         q1:"Правильный ответ: разделение нефти на фракции.",
         q2:"Алюминий не получают из нефти.",
-        q3:"Крекинг — это процесс увеличения выхода бензина.",
+        q3:"Крекинг — процесс увеличения выхода бензина.",
         q4:"Основные месторождения — океанический шельф и пустыни."
     };
     let score=0;
     for(let q in answers){
-        let sel = document.querySelector('input[name="'+q+'"]:checked');
-        document.getElementById("exp"+q.slice(1)).innerText = explanations[q];
+        let sel=document.querySelector('input[name="'+q+'"]:checked');
+        document.getElementById("exp"+q.slice(1)).innerText=explanations[q];
         if(sel && sel.value===answers[q]) score++;
     }
-    const resDiv = document.getElementById("quiz-result");
-    resDiv.innerHTML = "Ваш результат: " + score + " из 4";
-    resDiv.className = (score===4) ? "correct" : "incorrect";
+    const resDiv=document.getElementById("quiz-result");
+    resDiv.innerHTML="Ваш результат: "+score+" из 4";
+    resDiv.className=(score===4)?"correct":"incorrect";
 }
-
-// частицы на фоне
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-let w, h;
-function resize(){ w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
-window.addEventListener('resize', resize); resize();
-
-let particles = [];
-for(let i=0;i<150;i++){
-  particles.push({x:Math.random()*w, y:Math.random()*h, r:Math.random()*2+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5});
-}
-
-function animateParticles(){
-  ctx.clearRect(0,0,w,h);
-  for(let p of particles){
-    p.x += p.dx; p.y += p.dy;
-    if(p.x<0||p.x>w)p.dx*=-1;
-    if(p.y<0||p.y>h)p.dy*=-1;
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle='rgba(255,215,0,0.5)';
-    ctx.fill();
-  }
-  requestAnimationFrame(animateParticles);
-}
-animateParticles();
 </script>
 </body>
 </html>
